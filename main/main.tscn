@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://m15lwxkt8djl"]
+
+[ext_resource type="Script" path="res://main/main.gd" id="1_8bav2"]
+[ext_resource type="PackedScene" uid="uid://buv13lkjteim7" path="res://ui/ui.tscn" id="2_o5ibu"]
+[ext_resource type="Script" path="res://main/level_manager.gd" id="3_viqef"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_8bav2")
+
+[node name="UI" parent="." instance=ExtResource("2_o5ibu")]
+
+[node name="LevelManager" type="Node" parent="."]
+script = ExtResource("3_viqef")
+
+[connection signal="screen_changed" from="UI" to="." method="_on_ui_screen_changed"]
