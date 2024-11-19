@@ -6,4 +6,4 @@ func _ready() -> void:
 
 
 func _on_start_button_pressed() -> void:
-	$LevelManager.load_level(preload("res://scenes/levels/level.tscn"))
+	$LevelManager.load_level(preload("res://scenes/level.tscn"))
