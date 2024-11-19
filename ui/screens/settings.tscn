@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=3 uid="uid://cj0w217bhbhlb"]
+
+[ext_resource type="Script" path="res://ui/screen.gd" id="1_oaxgr"]
+[ext_resource type="Script" path="res://ui/components/change_screen.gd" id="2_mjalq"]
+[ext_resource type="Script" path="res://ui/components/range_display.gd" id="3_ugdfh"]
+[ext_resource type="Script" path="res://ui/components/grab_focus.gd" id="4_q8gel"]
+[ext_resource type="Script" path="res://ui/components/settings_control.gd" id="5_thuru"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_xbwfw"]
+action = &"ui_cancel"
+
+[sub_resource type="Shortcut" id="Shortcut_yv67a"]
+events = [SubResource("InputEventAction_xbwfw")]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oaxgr")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+shortcut = SubResource("Shortcut_yv67a")
+text = "Back"
+
+[node name="ChangeScreen" type="Node" parent="Button"]
+script = ExtResource("2_mjalq")
+screen = &"MainMenu"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MusicVolumeLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Music Volume (%d%%):"
+horizontal_alignment = 1
+
+[node name="MusicVolumeSlider" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+step = 5.0
+value = 100.0
+
+[node name="RangeDisplay" type="Node" parent="VBoxContainer/MusicVolumeSlider" node_paths=PackedStringArray("target_label")]
+script = ExtResource("3_ugdfh")
+target_label = NodePath("../../MusicVolumeLabel")
+
+[node name="GrabFocus" type="Node" parent="VBoxContainer/MusicVolumeSlider"]
+script = ExtResource("4_q8gel")
+
+[node name="SettingsControl" type="Node" parent="VBoxContainer/MusicVolumeSlider"]
+script = ExtResource("5_thuru")
+setting = &"music_volume"
+
+[node name="SFXVolumeLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "SFX Volume (%d%%):"
+horizontal_alignment = 1
+
+[node name="SFXVolumeLabel2" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+step = 5.0
+value = 100.0
+
+[node name="RangeDisplay" type="Node" parent="VBoxContainer/SFXVolumeLabel2" node_paths=PackedStringArray("target_label")]
+script = ExtResource("3_ugdfh")
+target_label = NodePath("../../SFXVolumeLabel")
+
+[node name="SettingsControl" type="Node" parent="VBoxContainer/SFXVolumeLabel2"]
+script = ExtResource("5_thuru")
+setting = &"sfx_volume"

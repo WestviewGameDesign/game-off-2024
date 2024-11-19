@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://buv13lkjteim7"]
+
+[ext_resource type="Script" path="res://ui/ui.gd" id="1_01qi7"]
+[ext_resource type="PackedScene" uid="uid://c8apoba4btjwx" path="res://ui/screens/main_menu/main_menu.tscn" id="2_kv875"]
+[ext_resource type="PackedScene" uid="uid://cj0w217bhbhlb" path="res://ui/screens/settings.tscn" id="3_ujnlm"]
+[ext_resource type="PackedScene" uid="uid://bq1rrupb3tan3" path="res://ui/screens/in_game.tscn" id="4_non4m"]
+[ext_resource type="Script" path="res://ui/screen.gd" id="5_ath6u"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_01qi7")
+
+[node name="Screens" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="MainMenu" parent="Screens" instance=ExtResource("2_kv875")]
+layout_mode = 1
+
+[node name="Settings" parent="Screens" instance=ExtResource("3_ujnlm")]
+visible = false
+layout_mode = 1
+
+[node name="InGame" parent="Screens" instance=ExtResource("4_non4m")]
+script = ExtResource("5_ath6u")
